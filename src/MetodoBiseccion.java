@@ -23,12 +23,29 @@ public class MetodoBiseccion {
     }
 	public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese el valor inicial a: ");
-        double a = scanner.nextDouble();
-        System.out.print("Ingrese el valor inicial b: ");
-        double b = scanner.nextDouble();
-        System.out.print("Ingrese la tolerancia: ");
-        double tolerancia = scanner.nextDouble();
+        
+        //validacion
+        double a = 0, b = 0, tolerancia = 0;
+        boolean valido = false;
+        
+        while (!valido) {
+            try {
+                System.out.print("Ingrese el valor inicial a: ");
+                a = scanner.nextDouble();
+                System.out.print("Ingrese el valor inicial b: ");
+                b = scanner.nextDouble();
+                if (a == b) {
+                    System.out.println("Los valores de a y b no pueden ser iguales. Intente de nuevo.");
+                    continue;
+                }
+                System.out.print("Ingrese la tolerancia: ");
+                tolerancia = scanner.nextDouble();
+                valido = true;
+            } catch (Exception e) {
+                System.out.println("Entrada no válida. Por favor, ingrese valores numéricos.");
+                scanner.nextLine();
+            }
+        }
 
         double raiz = biseccion(a, b, tolerancia);
         System.out.println("La raíz es: " + raiz);
